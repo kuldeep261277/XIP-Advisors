@@ -57,14 +57,102 @@
             width: 80%;
             margin: auto;
         }
+        #chatbot {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 300px;
+            height: 400px;
+            background: #222;
+            border-radius: 10px;
+            padding: 10px;
+            display: none;
+        }
+        #chatbot-header {
+            background: #03a886;
+            padding: 10px;
+            cursor: pointer;
+            text-align: center;
+            color: #fff;
+        }
     </style>
 </head>
 <body>
+    <header>
+        <div class="logo">
+            <img src="/mnt/data/XIP logo WT.png" alt="XIP Advisors Logo">
+        </div>
+        <nav>
+            <a href="#about">About</a>
+            <a href="#services">Services</a>
+            <a href="#sip-calculator">SIP Calculator</a>
+            <a href="#contact">Contact</a>
+        </nav>
+    </header>
+    
+    <section class="hero">
+        <h1>Welcome to <span class="highlight">XIP Advisors</span></h1>
+        <p>Your trusted partner for mutual fund investments & SIPs.</p>
+        <button class="cta-button">Start Investing</button>
+    </section>
+
+    <section id="about" class="section">
+        <h2>About Us</h2>
+        <p>XIP Advisors helps you grow wealth through expert mutual fund guidance and seamless SIP investments.</p>
+    </section>
+    
+    <section id="services" class="section">
+        <h2>Our Services</h2>
+        <ul>
+            <li>Online & Offline SIP Investments</li>
+            <li>Investment & SIP Calculator</li>
+            <li>Client Dashboard for Portfolio Tracking</li>
+            <li>Expert Financial Guidance</li>
+        </ul>
+    </section>
+    
+    <section id="sip-calculator" class="section">
+        <h2>SIP Calculator</h2>
+        <label>Monthly Investment (₹): <input type="number" id="investment" value="5000"></label>
+        <br>
+        <label>Expected Return Rate (%): <input type="number" id="rate" value="12"></label>
+        <br>
+        <label>Duration (Years): <input type="number" id="years" value="10"></label>
+        <br>
+        <button onclick="calculateSIP()" class="cta-button">Calculate</button>
+        <p id="result"></p>
+    </section>
+    
     <section class="investment-chart">
         <canvas id="marketChartCanvas"></canvas>
     </section>
+    
+    <section id="contact" class="section">
+        <h2>Contact Us</h2>
+        <p>Email: info@xipadvisors.com | Phone: +91-XXXX-XXXXXX</p>
+    </section>
+    
+    <footer class="footer">
+        <p>&copy; 2025 XIP Advisors. All rights reserved.</p>
+    </footer>
+
+    <div id="chatbot">
+        <div id="chatbot-header" onclick="toggleChatbot()">Chat with Us</div>
+        <iframe src="https://www.chatbase.co/chatbot-iframe" width="100%" height="100%"></iframe>
+    </div>
 
     <script>
+        function calculateSIP() {
+            let P = parseFloat(document.getElementById("investment").value);
+            let r = parseFloat(document.getElementById("rate").value) / 100 / 12;
+            let n = parseInt(document.getElementById("years").value) * 12;
+            let futureValue = P * ((Math.pow(1 + r, n) - 1) / r) * (1 + r);
+            document.getElementById("result").innerHTML = "Future Value: ₹" + futureValue.toFixed(2);
+        }
+        function toggleChatbot() {
+            let chatbot = document.getElementById("chatbot");
+            chatbot.style.display = chatbot.style.display === "none" ? "block" : "none";
+        }
         let marketCtx = document.getElementById('marketChartCanvas').getContext('2d');
         let marketChart = new Chart(marketCtx, {
             type: 'line',

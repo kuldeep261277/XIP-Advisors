@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>XIP Advisors - Your SIP Partner</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #000;
+            color: #fff;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+            background-color: #111;
+        }
+        .logo img {
+            width: 150px;
+        }
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            margin: 0 15px;
+        }
+        .highlight {
+            color: #03a886;
+        }
+        .hero {
+            text-align: center;
+            padding: 100px 20px;
+        }
+        .cta-button {
+            background-color: #03a886;
+            padding: 15px 30px;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+            font-size: 18px;
+        }
+        .section {
+            padding: 50px 20px;
+            text-align: center;
+        }
+        .footer {
+            background-color: #111;
+            padding: 20px;
+            text-align: center;
+        }
+        .investment-chart {
+            width: 80%;
+            margin: auto;
+        }
+    </style>
+</head>
+<body>
+    <section class="investment-chart">
+        <canvas id="marketChartCanvas"></canvas>
+    </section>
+
+    <script>
+        let marketCtx = document.getElementById('marketChartCanvas').getContext('2d');
+        let marketChart = new Chart(marketCtx, {
+            type: 'line',
+            data: {
+                labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+                datasets: [{
+                    label: 'Market Trends',
+                    data: [100, 110, 95, 120, 115, 130, 140, 135, 150, 160, 155, 165],
+                    borderColor: '#03a886',
+                    fill: false
+                }]
+            },
+            options: {
+                responsive: true,
+                animation: { duration: 2000 }
+            }
+        });
+    </script>
+</body>
+</html>
